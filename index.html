@@ -17,7 +17,7 @@
   <style>
     @font-face {
       font-family: 'Cereal';
-      src: url('Cereal.woff2') format('woff2');
+      src: url('AirbnbCerealVF_W_Wght.woff2') format('woff2');
       font-weight: 100 900;
       font-style: normal;
       font-display: swap;
@@ -473,20 +473,34 @@
     .process-note strong { color: var(--black); }
 
     .steps-wrap {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
+      display: flex;
+      flex-direction: column;
       border: 1px solid var(--border);
       border-radius: var(--r);
       overflow: hidden;
       margin-bottom: 2rem;
+      max-width: 780px;
     }
 
     .step-card {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0 2rem;
+      align-items: start;
       background: var(--white);
-      padding: 1.625rem 1.5rem;
+      padding: 1.5rem 1.75rem;
+      border-bottom: 1px solid var(--border);
     }
+    .step-card:last-child { border-bottom: none; }
+    .step-card:nth-child(even) { background: var(--snow); }
+
+    .step-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding-top: 0.1rem;
+    }
+
 
     .step-num {
       font-size: 0.625rem;
@@ -494,36 +508,109 @@
       letter-spacing: 0.1em;
       color: var(--foggy);
       text-transform: uppercase;
-      margin-bottom: 0.625rem;
-      display: block;
     }
 
     .step-name {
-      font-size: 1rem;
+      font-size: 0.9375rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       color: var(--black);
-      margin-bottom: 0.5rem;
     }
 
     .step-desc {
-      font-size: 0.8125rem;
-      color: var(--foggy);
-      line-height: 1.65;
+      font-size: 0.875rem;
+      color: var(--hof);
+      line-height: 1.7;
     }
 
     .process-callout {
-      background: var(--white);
-      border-left: 4px solid var(--border);
-      border-radius: 0 8px 8px 0;
-      padding: 1.25rem 1.5rem;
-      font-size: 0.9375rem;
-      color: var(--hof);
-      line-height: 1.75;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+      max-width: 780px;
     }
-    .process-callout strong { color: var(--black); }
-    .process-callout a { color: var(--hof); text-decoration: underline; }
-    .process-callout a:hover { color: var(--rausch); }
+
+    .process-callout-item {
+      background: var(--white);
+      padding: 1.625rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+    }
+
+    .process-callout-header {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+    }
+
+    .process-callout-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: var(--snow);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .process-callout-title {
+      font-size: 0.875rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--black);
+    }
+
+    .process-callout-body {
+      font-size: 0.8125rem;
+      color: var(--foggy);
+      line-height: 1.7;
+    }
+    .process-callout-body a { color: var(--hof); text-decoration: underline; }
+    .process-callout-body a:hover { color: var(--rausch); }
+
+    @media (max-width: 600px) {
+      .process-callout { grid-template-columns: 1fr; }
+    }
+
+    /* ─── PROCESS INLINE NOTE ─── */
+    .process-inline {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      max-width: 780px;
+      margin: 3rem 0 0;
+      padding: 1.75rem 2rem;
+      background: var(--black);
+      border-radius: var(--r);
+    }
+    .process-inline-emoji {
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 0.125rem;
+    }
+    .process-inline-inner { display: flex; flex-direction: column; gap: 0.375rem; }
+    .process-inline-label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    .process-inline-text {
+      font-size: 0.9375rem;
+      color: var(--white);
+      line-height: 1.65;
+    }
+    .process-inline-text a { color: var(--white); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,255,255,0.4); }
+    .process-inline-text a:hover { text-decoration-color: var(--white); }
 
     /* ─── TRACKER EMBED ─── */
     .tracker-wrap {
@@ -627,6 +714,7 @@
       text-decoration: none;
     }
     .engage-link::after { content: ' →'; }
+    .engage-link.soon::after { content: ''; }
     .engage-link:hover { text-decoration: underline; }
 
     .engage-badge {
@@ -736,6 +824,8 @@
       line-height: 1.65;
       flex: 1;
     }
+    .resource-desc a { color: var(--hof); text-decoration: underline; }
+    .resource-desc a:hover { color: var(--rausch); }
 
     .resource-cta {
       display: inline-flex;
@@ -773,11 +863,11 @@
       .team-card { max-width: 420px; }
       .collab-grid { grid-template-columns: 1fr; }
       .engage-grid { grid-template-columns: 1fr; }
-      .steps-wrap { grid-template-columns: repeat(3, 1fr); }
+      .step-card { grid-template-columns: 110px 1fr; gap: 0 1.25rem; }
       .resource-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 600px) {
-      .steps-wrap { grid-template-columns: repeat(2, 1fr); }
+      .step-card { grid-template-columns: 1fr; }
       .resource-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 400px) {
@@ -952,7 +1042,7 @@
             <div class="engage-desc">The majority of PDP Design work flows through our quarterly roadmap planning process. Internal team drives updates through structured planning cycles.</div>
             <div style="display:flex;flex-direction:column;gap:0.25rem;margin-top:0.625rem;">
               <!-- ✏️ LINKS: Update hrefs as needed -->
-              <a href="https://airtable.com/appFixO6p3rlIhoJV/pagedt2yW5CF5x3UO" class="engage-link" target="_blank" style="margin-top:0">PDP Roadmap</a>
+              <a href="https://airtable.com/appFixO6p3rlIhoJV/pagedt2yW5CF5x3UO" class="engage-link" target="_blank" style="margin-top:0">PDP Roadmap — AirTable</a>
               <a href="https://docs.google.com/presentation/d/1LWpVb2tBVjiQprM1n3DtBIwdkv4owozhOh3_y8QWSTQ/edit?slide=id.gc91b80c485_0_550#slide=id.gc91b80c485_0_550" class="engage-link" target="_blank" style="margin-top:0">Roadmap Planning Process</a>
             </div>
           </div>
@@ -961,9 +1051,9 @@
             <div class="engage-icon">🧪</div>
             <div class="engage-name">Incubation-Led</div>
             <div class="engage-desc">Lines of business incubations (Hotels, Luxe) request ERF-scoped updates. Learnings are designed to apply back to the largest supply line: Homes.</div>
-            <a href="https://airtable.com/appkEzkHX7JRhvo6M/pagG1yaxypYWQWlxj" class="engage-link" target="_blank">Hotels Roadmap</a>
+            <a href="https://airtable.com/appkEzkHX7JRhvo6M/pagG1yaxypYWQWlxj" class="engage-link" target="_blank">Hotels Roadmap — AirTable</a>
             <!-- ✏️ LUXE ROADMAP: Replace href when available -->
-            <a href="#" class="engage-link" target="_blank" style="color:var(--foggy);cursor:default" onclick="return false">Luxe Roadmap <span style="font-size:0.625rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;background:var(--snow);border:1px solid var(--border);border-radius:4px;padding:0.1rem 0.35rem;margin-left:0.25rem;color:var(--foggy)">Soon</span></a>
+            <a href="#" class="engage-link soon" style="color:var(--foggy);cursor:default" onclick="return false">Luxe Roadmap <span style="font-size:0.625rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;background:var(--snow);border:1px solid var(--border);border-radius:4px;padding:0.1rem 0.35rem;margin-left:0.25rem;color:var(--foggy)">Soon</span></a>
           </div>
 
           <div class="engage-card">
@@ -971,7 +1061,7 @@
             <div class="engage-name">Plug-In</div>
             <div class="engage-desc">Teams leverage the modular PDP architecture to plug and play an iteration on the existing PDP without requiring a full redesign.</div>
             <!-- ✏️ PLUG-IN LINK: Replace href when available -->
-            <a href="#" class="engage-link" style="color:var(--foggy);cursor:default;margin-top:0.625rem" onclick="return false">Learn more <span style="font-size:0.625rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;background:var(--snow);border:1px solid var(--border);border-radius:4px;padding:0.1rem 0.35rem;margin-left:0.25rem;color:var(--foggy)">Soon</span></a>
+            <a href="#" class="engage-link soon" style="color:var(--foggy);cursor:default;margin-top:0.625rem" onclick="return false">Learn more <span style="font-size:0.625rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;background:var(--snow);border:1px solid var(--border);border-radius:4px;padding:0.1rem 0.35rem;margin-left:0.25rem;color:var(--foggy)">Soon</span></a>
           </div>
 
         </div>
@@ -1030,13 +1120,7 @@
       <!-- ✏️ HEADLINE -->
       <h2 class="section-h2">Here's how the magic happens.</h2>
       <!-- ✏️ BLURB -->
-      <p class="section-blurb">We move fast, stay agile, and connect the dots across the platform to deliver quality at every surface.</p>
-
-      <!-- ✏️ NON-LINEAR NOTE: Edit or remove as needed -->
-      <div class="process-note">
-        <span class="process-note-icon">↻</span>
-        <span><strong>These checkpoints aren't linear.</strong> Projects may revisit or skip steps depending on scope and stage — this is a map of the most important moments, not a strict sequence.</span>
-      </div>
+      <p class="section-blurb">We move fast, stay agile, and connect the dots across the platform to deliver quality at every surface. These are the most important checkpoints — not a strict sequence. Projects may revisit or skip steps depending on scope and stage.</p>
 
       <div class="steps-wrap">
 
@@ -1045,54 +1129,67 @@
              To remove: delete the whole step-card block. -->
 
         <div class="step-card">
-          <span class="step-num">Step 01</span>
-          <div class="step-name">Kick-off</div>
-          <div class="step-desc">Starts with a design brief, PRD, one-pager, or vision doc. Ideally the full working group joins — PMM, Eng, and partners. Sometimes there are two kick-offs: an early one to align on concepts, and a second to bring Engineering in as the project moves into Detailed Design.</div>
+          <div class="step-left">
+            <span class="step-num">Step 01</span>
+            <div class="step-name">Kick-off</div>
+          </div>
+          <div class="step-desc">Starts with a design brief, PRD, one-pager, or vision doc. Sometimes there are two kick-offs: an early one to align on concepts, and a second to bring Engineering in as the project moves into Detailed Design.</div>
         </div>
 
         <div class="step-card">
-          <span class="step-num">Step 02</span>
-          <div class="step-name">Explore</div>
+          <div class="step-left">
+            <span class="step-num">Step 02</span>
+            <div class="step-name">Explore</div>
+          </div>
           <div class="step-desc">Design Team bake time. This phase produces concepts or "sketches" — wide ideation before any direction is locked. Space to be wrong fast.</div>
         </div>
 
         <div class="step-card">
-          <span class="step-num">Step 03</span>
-          <div class="step-name">Refine</div>
+          <div class="step-left">
+            <span class="step-num">Step 03</span>
+            <div class="step-name">Refine</div>
+          </div>
           <div class="step-desc">A direction is decided. Design Team lays out all use cases and platform considerations for Detailed Design, checks with Accessibility Design, and begins scoping with the Eng team.</div>
         </div>
 
         <div class="step-card">
-          <span class="step-num">Step 04</span>
-          <div class="step-name">Handoff</div>
+          <div class="step-left">
+            <span class="step-num">Step 04</span>
+            <div class="step-name">Handoff</div>
+          </div>
           <div class="step-desc">Using Figma's Dev Mode. Usually a formal walkthrough where the Design Team presents to Engineering, answers questions, and finalizes specs before build begins.</div>
         </div>
 
         <div class="step-card">
-          <span class="step-num">Step 05</span>
-          <div class="step-name">Design QA</div>
+          <div class="step-left">
+            <span class="step-num">Step 05</span>
+            <div class="step-name">Design QA</div>
+          </div>
           <div class="step-desc">Live Zoom build walkthrough, alpha build with tickets, or a Slack video for smaller features. Must happen before the ERF or feature is pushed live by Eng.</div>
         </div>
 
         <div class="step-card">
-          <span class="step-num">Step 06</span>
-          <div class="step-name">ERF &amp; Iteration</div>
+          <div class="step-left">
+            <span class="step-num">Step 06</span>
+            <div class="step-name">ERF &amp; Iteration</div>
+          </div>
           <div class="step-desc">ERF read out, roadmap iteration, and follow-on work. Shipping is a checkpoint, not the finish line.</div>
         </div>
 
       </div>
 
-      <!-- ✏️ CALLOUT BOX: Working norms and approvals process -->
-      <div class="process-callout">
-        <strong>How we operate:</strong> Designs are reviewed with Design Sponsors via <strong>#mark-studio</strong> and/or partner team Sponsor reviews. It's the Design Team's responsibility to ensure design alignment and approvals before shipping anything.<br><br>
-        We use <strong>AirTable</strong> as our roadmap source of truth. Everything we work on is tracked in our design tracker — view the live channel at <a href="https://airbnb.enterprise.slack.com/archives/C08UUJRV3DZ" target="_blank">#pdp-design tracker</a>.
-        <!-- ✏️ TRACKER EMBED: If you have an AirTable share/embed URL, replace the src below and uncomment the iframe. Slack channel URLs cannot be embedded. -->
-        <!--
-        <div class="tracker-wrap">
-          <p class="tracker-label">Design Tracker — Live View</p>
-          <iframe class="tracker-embed" src="PASTE_YOUR_AIRTABLE_EMBED_URL_HERE" frameborder="0" allowfullscreen></iframe>
+      <!-- ✏️ INLINE NOTE: Approvals process -->
+      <div class="process-inline">
+        <div class="process-inline-emoji">🟢</div>
+        <div class="process-inline-inner">
+          <div class="process-inline-label">Getting the green light</div>
+          <ul class="process-inline-text" style="margin: 0; padding-left: 1.125rem; display: flex; flex-direction: column; gap: 0.35rem;">
+            <li>Reviews happen via <a href="https://air.bb/mark-studio" target="_blank">#mark-studio</a> — but not every project needs the same sign-off</li>
+            <li>Could be blocking, an async heads-up, or nothing at all</li>
+            <li>Scope, size, and timeline all factor in</li>
+            <li>The Design Team makes the call and keeps XFN partners informed</li>
+          </ul>
         </div>
-        -->
       </div>
 
     </div>
@@ -1118,21 +1215,15 @@
 
         <a href="#" class="resource-card">
           <div class="resource-icon">🎨</div>
-          <div class="resource-name">Figma Library</div>
+          <div class="resource-name">Figma Components</div>
           <div class="resource-desc">The official component library. Production-ready, updated weekly. Don't use anything else in shipped work.</div>
           <div class="resource-cta">Open in Figma</div>
         </a>
         <a href="#" class="resource-card">
           <div class="resource-icon">📐</div>
-          <div class="resource-name">Design System Docs</div>
+          <div class="resource-name">PDP Content Guidelines</div>
           <div class="resource-desc">Foundations, tokens, patterns, and usage guidelines. The source of truth for how things look and why.</div>
           <div class="resource-cta">Read the Docs</div>
-        </a>
-        <a href="#" class="resource-card">
-          <div class="resource-icon">📋</div>
-          <div class="resource-name">Intake Form</div>
-          <div class="resource-desc">Submit a design request via Slack form. We'll follow up within 1 business day to scope together.</div>
-          <div class="resource-cta">Submit a Request</div>
         </a>
         <a href="#" class="resource-card">
           <div class="resource-icon">🔬</div>
@@ -1140,17 +1231,24 @@
           <div class="resource-desc">Past studies, synthesis docs, and user insights. Search here before commissioning new research.</div>
           <div class="resource-cta">Browse Insights</div>
         </a>
-        <a href="#" class="resource-card">
+        <div class="resource-card">
           <div class="resource-icon">🗂️</div>
-          <div class="resource-name">Design Tracker</div>
-          <div class="resource-desc">AirTable is our roadmap source of truth. Everything the team is working on lives here.</div>
-          <div class="resource-cta">View Tracker</div>
-        </a>
+          <div class="resource-name">What we're working on</div>
+          <div class="resource-desc">If it's not in the Design Tracker, it's not Design-staffed.</div>
+          <a href="https://air.bb/roadmap" class="resource-cta" target="_blank">One company roadmap</a>
+          <a href="https://airbnb.enterprise.slack.com/archives/C08UUJRV3DZ" class="resource-cta" target="_blank">Design Tracker</a>
+        </div>
         <a href="https://airbnb.enterprise.slack.com/archives/C08UUJRV3DZ" class="resource-card" target="_blank">
           <div class="resource-icon">💬</div>
           <div class="resource-name">#pdp-design-collabs</div>
           <div class="resource-desc">Our primary Slack channel. Drop a question, start a collab, or stay in the loop on what the team is shipping.</div>
           <div class="resource-cta">Open in Slack</div>
+        </a>
+        <a href="https://www.figma.com/design/qa5f2VYfEeDFVIxgWAxcWo/Evergreen-Screens---Components-2026---Guest---host?node-id=32-52850" class="resource-card" target="_blank">
+          <div class="resource-icon">🖼️</div>
+          <div class="resource-name">Evergreen Screens</div>
+          <div class="resource-desc">Marcom-approved screens for grab-and-go usage. Production-ready visuals cleared for use across campaigns and materials.</div>
+          <div class="resource-cta">Open in Figma</div>
         </a>
 
       </div>
@@ -1230,4 +1328,3 @@
   </script>
 </body>
 </html>
-
