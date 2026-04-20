@@ -17,7 +17,7 @@
   <style>
     @font-face {
       font-family: 'Cereal';
-      src: url('Cereal.woff2') format('woff2');
+      src: url('cereal.woff2') format('woff2');
       font-weight: 100 900;
       font-style: normal;
       font-display: swap;
@@ -188,6 +188,57 @@
     }
 
     .intro-body strong { color: var(--black); }
+
+    /* ─── SURFACES FPO ─── */
+    .surfaces-fpo {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 6vw, 4rem) clamp(3rem, 6vw, 4rem);
+      position: relative;
+      z-index: 1;
+    }
+
+    .surfaces-fpo-label {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--foggy);
+      margin-bottom: 0.75rem;
+    }
+
+    .surfaces-fpo-block {
+      width: 100%;
+      aspect-ratio: 16 / 7;
+      background: var(--white);
+      border: 2px dashed var(--border);
+      border-radius: var(--r);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--mist, #B0B0B0);
+    }
+
+    .surfaces-fpo-tag {
+      font-size: 0.625rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--border);
+      color: var(--foggy);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    .surfaces-fpo-hint {
+      font-size: 0.8125rem;
+      color: var(--foggy);
+      text-align: center;
+      max-width: 360px;
+      line-height: 1.5;
+    }
 
     /* ─── TEAM CARD ─── */
     .team-card {
@@ -796,7 +847,7 @@
                 <img src="sevilla_garza.avif" alt="Sevilla Garza" onerror="this.style.display='none'">
               </div>
               <div class="avatar-name"><a href="https://one.airbnb.com/people/sevilla_garza" target="_blank">Sevilla Garza</a></div>
-              <div class="avatar-role">Designer</div>
+              <div class="avatar-role">Design Program Manager</div>
             </div>
 
             <div class="avatar-item">
@@ -836,7 +887,7 @@
                 <img src="michelle_mcalister.avif" alt="Michelle McAlister" onerror="this.style.display='none'">
               </div>
               <div class="avatar-name"><a href="https://one.airbnb.com/people/michelle_mcalister" target="_blank">Michelle McAlister</a></div>
-              <div class="avatar-role">Designer</div>
+              <div class="avatar-role">Writer</div>
             </div>
 
             <div class="avatar-item">
@@ -844,12 +895,12 @@
                 <img src="chloe_nguyen.avif" alt="Chloe Nguyen" onerror="this.style.display='none'">
               </div>
               <div class="avatar-name"><a href="https://one.airbnb.com/people/chloe_nguyen" target="_blank">Chloe Nguyen</a></div>
-              <div class="avatar-role">Designer</div>
+              <div class="avatar-role">Writer</div>
             </div>
 
             <div class="avatar-item">
               <div class="avatar-circle sponsor" data-initials="ML">
-                <img src="https://one.airbnb.com/people/mark_laughlin/photo" alt="Mark Laughlin" onerror="this.style.display='none'">
+                <img src="mark_laughlin.avif" alt="Mark Laughlin" onerror="this.style.display='none'">
               </div>
               <div class="avatar-name"><a href="https://one.airbnb.com/people/mark_laughlin" target="_blank">Mark Laughlin</a></div>
               <div class="avatar-role">Design Sponsor</div>
@@ -860,6 +911,17 @@
         </div>
       </div>
     </div>
+
+    <!-- ✏️ SURFACES IMAGE: Replace the FPO block with a real <img> once the asset exists.
+         e.g. <img src="surfaces.png" alt="UI surfaces" style="width:100%;border-radius:12px;display:block"> -->
+    <div class="surfaces-fpo">
+      <p class="surfaces-fpo-label">UI Surfaces &amp; Design Ownership</p>
+      <div class="surfaces-fpo-block">
+        <span class="surfaces-fpo-tag">FPO</span>
+        <span class="surfaces-fpo-hint">Replace with a visual showing the UI surfaces and design work the PDP team owns — e.g. a Figma export or annotated screenshot composite.</span>
+      </div>
+    </div>
+
   </section>
 
 
@@ -1162,3 +1224,4 @@
   </script>
 </body>
 </html>
+
