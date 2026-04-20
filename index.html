@@ -17,7 +17,7 @@
   <style>
     @font-face {
       font-family: 'Cereal';
-      src: url('cereal.woff2') format('woff2');
+      src: url('Cereal.woff2') format('woff2');
       font-weight: 100 900;
       font-style: normal;
       font-display: swap;
@@ -452,59 +452,64 @@
     #how-we-work { background: var(--snow); border-top: 1px solid var(--border); }
 
     .process-note {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--foggy);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--hof);
       background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 0.3rem 0.875rem;
-      margin-bottom: 1.75rem;
+      border-radius: var(--r);
+      padding: 1rem 1.25rem;
+      margin-bottom: 2rem;
+      line-height: 1.55;
     }
+    .process-note-icon {
+      font-size: 1.125rem;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+    .process-note strong { color: var(--black); }
 
     .steps-wrap {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 1rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
       margin-bottom: 2rem;
     }
 
     .step-card {
       background: var(--white);
-      border-radius: var(--r);
-      padding: 1.5rem 1.25rem;
-      border: 1px solid var(--border);
+      padding: 1.625rem 1.5rem;
     }
 
     .step-num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 30px; height: 30px;
-      border-radius: 50%;
-      background: var(--black);
-      color: white;
-      font-size: 0.6875rem;
+      font-size: 0.625rem;
       font-weight: 800;
-      letter-spacing: 0.04em;
-      margin-bottom: 0.875rem;
+      letter-spacing: 0.1em;
+      color: var(--foggy);
+      text-transform: uppercase;
+      margin-bottom: 0.625rem;
+      display: block;
     }
 
     .step-name {
-      font-size: 0.9375rem;
+      font-size: 1rem;
       font-weight: 800;
-      letter-spacing: -0.015em;
+      letter-spacing: -0.02em;
       color: var(--black);
-      margin-bottom: 0.375rem;
+      margin-bottom: 0.5rem;
     }
 
     .step-desc {
       font-size: 0.8125rem;
       color: var(--foggy);
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     .process-callout {
@@ -944,11 +949,11 @@
             <span class="engage-badge">Primary</span>
             <div class="engage-icon">🗺️</div>
             <div class="engage-name">Team-Driven</div>
-            <div class="engage-desc">The majority of PDP design work flows through our quarterly roadmap planning process. Internal team drives updates through structured planning cycles.</div>
+            <div class="engage-desc">The majority of PDP Design work flows through our quarterly roadmap planning process. Internal team drives updates through structured planning cycles.</div>
             <div style="display:flex;flex-direction:column;gap:0.25rem;margin-top:0.625rem;">
               <!-- ✏️ LINKS: Update hrefs as needed -->
-              <a href="https://docs.google.com/presentation/d/1LWpVb2tBVjiQprM1n3DtBIwdkv4owozhOh3_y8QWSTQ/edit?slide=id.gc91b80c485_0_550#slide=id.gc91b80c485_0_550" class="engage-link" target="_blank" style="margin-top:0">Roadmap Planning Process</a>
               <a href="https://airtable.com/appFixO6p3rlIhoJV/pagedt2yW5CF5x3UO" class="engage-link" target="_blank" style="margin-top:0">PDP Roadmap</a>
+              <a href="https://docs.google.com/presentation/d/1LWpVb2tBVjiQprM1n3DtBIwdkv4owozhOh3_y8QWSTQ/edit?slide=id.gc91b80c485_0_550#slide=id.gc91b80c485_0_550" class="engage-link" target="_blank" style="margin-top:0">Roadmap Planning Process</a>
             </div>
           </div>
 
@@ -1027,9 +1032,10 @@
       <!-- ✏️ BLURB -->
       <p class="section-blurb">We move fast, stay agile, and connect the dots across the platform to deliver quality at every surface.</p>
 
-      <!-- ✏️ NON-LINEAR NOTE: Edit or remove this pill as needed -->
+      <!-- ✏️ NON-LINEAR NOTE: Edit or remove as needed -->
       <div class="process-note">
-        ↻ These checkpoints aren't linear — projects may revisit or skip steps depending on scope and stage.
+        <span class="process-note-icon">↻</span>
+        <span><strong>These checkpoints aren't linear.</strong> Projects may revisit or skip steps depending on scope and stage — this is a map of the most important moments, not a strict sequence.</span>
       </div>
 
       <div class="steps-wrap">
@@ -1039,38 +1045,38 @@
              To remove: delete the whole step-card block. -->
 
         <div class="step-card">
-          <div class="step-num">01</div>
+          <span class="step-num">Step 01</span>
           <div class="step-name">Kick-off</div>
-          <div class="step-desc">Starts with a design brief, PRD, one-pager, or vision doc. Ideally the full working group joins — PMM, Eng, and partners. Sometimes there are two kick-offs: an early one to align on concepts, and a second to bring Engineering in as the project moves into detailed design.</div>
+          <div class="step-desc">Starts with a design brief, PRD, one-pager, or vision doc. Ideally the full working group joins — PMM, Eng, and partners. Sometimes there are two kick-offs: an early one to align on concepts, and a second to bring Engineering in as the project moves into Detailed Design.</div>
         </div>
 
         <div class="step-card">
-          <div class="step-num">02</div>
+          <span class="step-num">Step 02</span>
           <div class="step-name">Explore</div>
-          <div class="step-desc">Design bake time. This phase produces concepts or "sketches" — wide ideation before any direction is locked. Space to be wrong fast.</div>
+          <div class="step-desc">Design Team bake time. This phase produces concepts or "sketches" — wide ideation before any direction is locked. Space to be wrong fast.</div>
         </div>
 
         <div class="step-card">
-          <div class="step-num">03</div>
+          <span class="step-num">Step 03</span>
           <div class="step-name">Refine</div>
-          <div class="step-desc">A direction is decided. Design lays out all use cases and platform considerations, checks with Accessibility Design, and begins scoping with the Eng team.</div>
+          <div class="step-desc">A direction is decided. Design Team lays out all use cases and platform considerations for Detailed Design, checks with Accessibility Design, and begins scoping with the Eng team.</div>
         </div>
 
         <div class="step-card">
-          <div class="step-num">04</div>
+          <span class="step-num">Step 04</span>
           <div class="step-name">Handoff</div>
-          <div class="step-desc">Using Figma's Dev Mode. Usually a formal walkthrough where design presents to Engineering, answers questions, and finalizes specs before build begins.</div>
+          <div class="step-desc">Using Figma's Dev Mode. Usually a formal walkthrough where the Design Team presents to Engineering, answers questions, and finalizes specs before build begins.</div>
         </div>
 
         <div class="step-card">
-          <div class="step-num">05</div>
+          <span class="step-num">Step 05</span>
           <div class="step-name">Design QA</div>
           <div class="step-desc">Live Zoom build walkthrough, alpha build with tickets, or a Slack video for smaller features. Must happen before the ERF or feature is pushed live by Eng.</div>
         </div>
 
         <div class="step-card">
-          <div class="step-num">06</div>
-          <div class="step-name">ERF & Iteration</div>
+          <span class="step-num">Step 06</span>
+          <div class="step-name">ERF &amp; Iteration</div>
           <div class="step-desc">ERF read out, roadmap iteration, and follow-on work. Shipping is a checkpoint, not the finish line.</div>
         </div>
 
@@ -1078,7 +1084,7 @@
 
       <!-- ✏️ CALLOUT BOX: Working norms and approvals process -->
       <div class="process-callout">
-        <strong>How we operate:</strong> Designs are reviewed with Design Sponsors via <strong>#mark-studio</strong> and/or partner team Sponsor reviews. It's the design team's responsibility to ensure design alignment and approvals before shipping anything.<br><br>
+        <strong>How we operate:</strong> Designs are reviewed with Design Sponsors via <strong>#mark-studio</strong> and/or partner team Sponsor reviews. It's the Design Team's responsibility to ensure design alignment and approvals before shipping anything.<br><br>
         We use <strong>AirTable</strong> as our roadmap source of truth. Everything we work on is tracked in our design tracker — view the live channel at <a href="https://airbnb.enterprise.slack.com/archives/C08UUJRV3DZ" target="_blank">#pdp-design tracker</a>.
         <!-- ✏️ TRACKER EMBED: If you have an AirTable share/embed URL, replace the src below and uncomment the iframe. Slack channel URLs cannot be embedded. -->
         <!--
@@ -1224,3 +1230,4 @@
   </script>
 </body>
 </html>
+
