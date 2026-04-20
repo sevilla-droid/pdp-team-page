@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ✏️ PAGE TITLE -->
+  <title>#pdp-design — Internal Hub</title>
+
+  <!--
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║  HOW TO EDIT THIS PAGE                                          ║
+  ║                                                                  ║
+  ║  Open this file in any text editor (VS Code, Sublime, etc.)     ║
+  ║  Search for  ✏️  to jump to every editable content spot.        ║
+  ║                                                                  ║
+  ║  Each ✏️ comment tells you exactly what to change.              ║
+  ║  You never need to touch the CSS or JS — just the HTML below.   ║
+  ╚══════════════════════════════════════════════════════════════════╝
+  -->
+
+  <style>
+    /* ─── FONT: Airbnb Cereal ───────────────────────────────────────
+       Cereal is served internally at Airbnb. If you're outside the
+       internal network, the page falls back to Inter → system-ui.
+       To self-host: drop the .woff2 files next to this HTML and
+       uncomment the @font-face blocks below.
+    ──────────────────────────────────────────────────────────────── */
+
+    /*
+    @font-face {
+      font-family: 'Cereal';
+      src: url('AirbnbCereal-Light.woff2')   format('woff2'); font-weight: 300;
+    }
+    @font-face {
+      font-family: 'Cereal';
+      src: url('AirbnbCereal-Book.woff2')    format('woff2'); font-weight: 400;
+    }
+    @font-face {
+      font-family: 'Cereal';
+      src: url('AirbnbCereal-Medium.woff2')  format('woff2'); font-weight: 500;
+    }
+    @font-face {
+      font-family: 'Cereal';
+      src: url('AirbnbCereal-Bold.woff2')    format('woff2'); font-weight: 700;
+    }
+    @font-face {
+      font-family: 'Cereal';
+      src: url('AirbnbCereal-ExtraBold.woff2') format('woff2'); font-weight: 800;
+    }
+    @font-face {
+      font-family: 'Cereal';
+      src: url('AirbnbCereal-Black.woff2')   format('woff2'); font-weight: 900;
+    }
+    */
+
+    /* ─── TOKENS ─── */
+    :root {
+      --rausch:  #FF5A5F;   /* accent — CTAs + active states only  */
+      --black:   #222222;   /* strongest text                       */
+      --hof:     #484848;   /* primary body text                    */
+      --foggy:   #767676;   /* secondary / metadata text            */
+      --mist:    #B0B0B0;   /* disabled / subtle                    */
+      --white:   #FFFFFF;
+      --snow:    #F7F7F7;   /* section backgrounds                  */
+      --border:  #EBEBEB;   /* dividers + card borders              */
+      --nav-h:   64px;
+      --r:       12px;
+      --font:    'Airbnb Cereal App', 'Cereal', 'Inter',
+                 -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      color: var(--hof);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ─── NAV ─── */
+    #nav {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      height: var(--nav-h);
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.25rem, 5vw, 3.5rem);
+      gap: 1rem;
+    }
+
+    .nav-brand {
+      font-size: 0.9375rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      color: var(--black);
+    }
+
+    .nav-tabs {
+      display: flex;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .nav-tabs::-webkit-scrollbar { display: none; }
+
+    .nav-tabs a {
+      display: flex;
+      align-items: center;
+      height: var(--nav-h);
+      padding: 0 1.125rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--foggy);
+      border-bottom: 3px solid transparent;
+      transition: color .18s, border-color .18s;
+      white-space: nowrap;
+    }
+    .nav-tabs a:hover { color: var(--black); }
+    .nav-tabs a.active {
+      color: var(--rausch);
+      border-bottom-color: var(--rausch);
+    }
+
+    /* ─── SHARED SECTION ─── */
+    section { scroll-margin-top: var(--nav-h); }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: clamp(3.5rem, 9vw, 6rem) clamp(1.5rem, 6vw, 4rem);
+    }
+
+    .eyebrow {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--foggy);
+      margin-bottom: 0.875rem;
+    }
+
+    .section-h2 {
+      font-size: clamp(1.75rem, 4vw, 2.625rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--black);
+      margin-bottom: 0.875rem;
+    }
+
+    .section-blurb {
+      font-size: 1rem;
+      color: var(--foggy);
+      line-height: 1.65;
+      max-width: 560px;
+      margin-bottom: 2.75rem;
+    }
+
+    /* ─── SECTION 1: INTRO ─── */
+    #intro {
+      background: var(--snow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #intro::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(34,34,34,.04) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .intro-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 6vw, 4rem);
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 3rem 5rem;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .intro-copy .eyebrow { margin-bottom: 1.25rem; }
+
+    .intro-h1 {
+      font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+      font-weight: 900;
+      line-height: 1.06;
+      letter-spacing: -0.035em;
+      color: var(--black);
+      margin-bottom: 1.25rem;
+    }
+    .intro-h1 em {
+      font-style: normal;
+      color: var(--rausch);
+    }
+
+    .intro-tagline {
+      font-size: 1.125rem;
+      font-weight: 500;
+      color: var(--foggy);
+      line-height: 1.55;
+      margin-bottom: 1.375rem;
+      max-width: 520px;
+    }
+
+    .intro-body {
+      font-size: 0.9375rem;
+      color: var(--hof);
+      line-height: 1.75;
+      max-width: 540px;
+    }
+
+    .team-card {
+      background: var(--white);
+      border-radius: var(--r);
+      padding: 1.625rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+    }
+
+    .team-card-label {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--foggy);
+      margin-bottom: 1.25rem;
+    }
+
+    .avatar-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .avatar-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      text-align: center;
+    }
+
+    .avatar-circle {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: var(--hof);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8125rem;
+      font-weight: 800;
+      color: white;
+    }
+
+    .avatar-name {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.3;
+    }
+    .avatar-role {
+      font-size: 0.625rem;
+      color: var(--foggy);
+      line-height: 1.25;
+    }
+
+    /* ─── SECTION 2: COLLAB ─── */
+    #collab { background: var(--white); border-top: 1px solid var(--border); }
+
+    .collab-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .contact-card {
+      background: var(--snow);
+      border-radius: var(--r);
+      padding: 1.75rem;
+      border: 1px solid var(--border);
+    }
+
+    .contact-card-label {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--foggy);
+      margin-bottom: 1.25rem;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      padding: 0.875rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-row:last-child { border-bottom: none; }
+
+    .contact-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-meta { display: flex; flex-direction: column; gap: 0.15rem; }
+
+    .contact-key {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--foggy);
+    }
+
+    .contact-val {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--hof);
+    }
+    .contact-val a:hover { text-decoration: underline; }
+
+    .collab-right { display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .cta-card {
+      background: var(--black);
+      border-radius: var(--r);
+      padding: 2rem 1.875rem;
+      color: white;
+    }
+
+    .cta-card h3 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-card p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,.65);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      background: var(--rausch);
+      color: white;
+      font-size: 0.875rem;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      padding: 0.75rem 1.375rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: transform .14s, box-shadow .14s;
+      text-decoration: none;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255,90,95,.35);
+    }
+
+    .scope-note {
+      background: var(--snow);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.125rem 1.375rem;
+      font-size: 0.875rem;
+      color: var(--hof);
+      line-height: 1.65;
+    }
+    .scope-note strong { color: var(--black); }
+
+    /* ─── SECTION 3: HOW WE WORK ─── */
+    #how-we-work { background: var(--snow); border-top: 1px solid var(--border); }
+
+    .steps-wrap {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .step-card {
+      background: var(--white);
+      border-radius: var(--r);
+      padding: 1.5rem 1.25rem;
+      border: 1px solid var(--border);
+      transition: border-color .18s, box-shadow .18s, transform .18s;
+    }
+    .step-card:hover {
+      border-color: var(--black);
+      box-shadow: 0 6px 24px rgba(0,0,0,.07);
+      transform: translateY(-2px);
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      background: var(--black);
+      color: white;
+      font-size: 0.6875rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.875rem;
+    }
+
+    .step-name {
+      font-size: 0.9375rem;
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      color: var(--black);
+      margin-bottom: 0.375rem;
+    }
+
+    .step-desc {
+      font-size: 0.8125rem;
+      color: var(--foggy);
+      line-height: 1.6;
+    }
+
+    .process-callout {
+      background: var(--white);
+      border-left: 4px solid var(--border);
+      border-radius: 0 8px 8px 0;
+      padding: 1.125rem 1.5rem;
+      font-size: 0.9375rem;
+      color: var(--hof);
+      line-height: 1.65;
+    }
+    .process-callout strong { color: var(--black); }
+
+    /* ─── SECTION 4: RESOURCES ─── */
+    #resources { background: var(--white); border-top: 1px solid var(--border); }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .resource-card {
+      background: var(--snow);
+      border-radius: var(--r);
+      padding: 1.625rem;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+      transition: border-color .18s, box-shadow .18s, transform .18s;
+      cursor: pointer;
+    }
+    .resource-card:hover {
+      border-color: var(--black);
+      box-shadow: 0 6px 28px rgba(0,0,0,.07);
+      transform: translateY(-2px);
+    }
+
+    .resource-icon { font-size: 1.625rem; margin-bottom: 0.25rem; }
+
+    .resource-name {
+      font-size: 0.9375rem;
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      color: var(--black);
+    }
+
+    .resource-desc {
+      font-size: 0.8125rem;
+      color: var(--foggy);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .resource-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--rausch);
+      margin-top: 0.625rem;
+    }
+    .resource-cta::after { content: ' →'; }
+
+    .footer-note {
+      font-size: 0.8125rem;
+      color: var(--foggy);
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      line-height: 1.65;
+    }
+    .footer-note a:hover { text-decoration: underline; }
+
+    /* ─── PAGE FOOTER ─── */
+    .page-footer {
+      background: var(--black);
+      color: rgba(255,255,255,.4);
+      text-align: center;
+      padding: 1.875rem 2rem;
+      font-size: 0.8125rem;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      .intro-layout { grid-template-columns: 1fr; }
+      .team-card { max-width: 400px; }
+      .collab-grid { grid-template-columns: 1fr; }
+      .steps-wrap { grid-template-columns: repeat(3, 1fr); }
+      .resource-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .steps-wrap { grid-template-columns: repeat(2, 1fr); }
+      .resource-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 400px) {
+      .nav-tabs a { padding: 0 0.75rem; font-size: 0.6875rem; }
+      .steps-wrap { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════
+       NAV
+  ══════════════════════════════════════════════ -->
+  <nav id="nav" role="navigation" aria-label="Primary">
+    <!-- ✏️ NAV BRAND: Team name shown top-left -->
+    <div class="nav-brand">#pdp-design</div>
+    <ul class="nav-tabs" role="tablist">
+      <!-- ✏️ NAV TABS: Change the visible label text. Don't change href or data-section. -->
+      <li><a href="#intro"       data-section="intro"       role="tab">Who We Are</a></li>
+      <li><a href="#collab"      data-section="collab"      role="tab">Work With Us</a></li>
+      <li><a href="#how-we-work" data-section="how-we-work" role="tab">The Process</a></li>
+      <li><a href="#resources"   data-section="resources"   role="tab">The Vault</a></li>
+    </ul>
+  </nav>
+
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 1 — WHO WE ARE
+  ══════════════════════════════════════════════ -->
+  <section id="intro" aria-label="Who We Are">
+    <div class="intro-layout">
+      <div class="intro-copy">
+        <!-- ✏️ EYEBROW: Small label above the headline -->
+        <p class="eyebrow">Design Team · PDP</p>
+
+        <!-- ✏️ HERO HEADLINE: Wrap key words in <em> for Rausch red -->
+        <h1 class="intro-h1">We're <em>#pdp-design.</em><br>Let's build something.</h1>
+
+        <!-- ✏️ TAGLINE: 1–2 sentence vibe statement -->
+        <p class="intro-tagline">The product design team behind your next great idea — shipping fast, thinking deeply.</p>
+
+        <!-- ✏️ BODY COPY: 2–3 sentences about the team's mission -->
+        <p class="intro-body">We partner with PMs, engineers, and stakeholders across the product to design experiences that actually work. From zero-to-one concepts to polishing production flows, we bring craft and clarity to every pixel. Our mission: make the product feel inevitable.</p>
+      </div>
+
+      <div>
+        <div class="team-card">
+          <!-- ✏️ TEAM CARD LABEL -->
+          <p class="team-card-label">The Team</p>
+          <div class="avatar-grid">
+
+            <!-- ✏️ TEAM MEMBERS: Change initials, name, and role for each person.
+                 To add more: copy one avatar-item block and paste it here.
+                 To remove: delete the whole avatar-item block. -->
+
+            <div class="avatar-item">
+              <div class="avatar-circle">MR</div>
+              <div class="avatar-name">Maya R.</div>
+              <div class="avatar-role">Lead Designer</div>
+            </div>
+            <div class="avatar-item">
+              <div class="avatar-circle">JL</div>
+              <div class="avatar-name">James L.</div>
+              <div class="avatar-role">Sr. Designer</div>
+            </div>
+            <div class="avatar-item">
+              <div class="avatar-circle">PK</div>
+              <div class="avatar-name">Priya K.</div>
+              <div class="avatar-role">UX Research</div>
+            </div>
+            <div class="avatar-item">
+              <div class="avatar-circle">TS</div>
+              <div class="avatar-name">Theo S.</div>
+              <div class="avatar-role">Content Design</div>
+            </div>
+            <div class="avatar-item">
+              <div class="avatar-circle">AL</div>
+              <div class="avatar-name">Ana L.</div>
+              <div class="avatar-role">Designer</div>
+            </div>
+            <div class="avatar-item">
+              <div class="avatar-circle">DC</div>
+              <div class="avatar-name">Dev C.</div>
+              <div class="avatar-role">Design Ops</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 2 — WORK WITH US
+  ══════════════════════════════════════════════ -->
+  <section id="collab" aria-label="Work With Us">
+    <div class="section-inner">
+      <!-- ✏️ EYEBROW -->
+      <p class="eyebrow">Collaborate</p>
+      <!-- ✏️ HEADLINE -->
+      <h2 class="section-h2">Got a project? Slide into our intake.</h2>
+      <!-- ✏️ BLURB -->
+      <p class="section-blurb">Need design support — a new feature, a flow audit, or a full product partner? This is where you start.</p>
+
+      <div class="collab-grid">
+        <div class="contact-card">
+          <!-- ✏️ CONTACT CARD LABEL -->
+          <p class="contact-card-label">How to Reach Us</p>
+
+          <!-- ✏️ SLACK: Change href to your Slack deep link, and the visible text -->
+          <div class="contact-row">
+            <div class="contact-icon">💬</div>
+            <div class="contact-meta">
+              <span class="contact-key">Slack</span>
+              <span class="contact-val"><a href="#">#pdp-design</a></span>
+            </div>
+          </div>
+
+          <!-- ✏️ EMAIL: Change href to mailto:your@email.com and update visible text -->
+          <div class="contact-row">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-meta">
+              <span class="contact-key">Email</span>
+              <span class="contact-val"><a href="#">pdp-design@company.com</a></span>
+            </div>
+          </div>
+
+          <!-- ✏️ OFFICE HOURS: Update the schedule or link -->
+          <div class="contact-row">
+            <div class="contact-icon">🗓️</div>
+            <div class="contact-meta">
+              <span class="contact-key">Office Hours</span>
+              <span class="contact-val">Thursdays 2–3 pm PT</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="collab-right">
+          <div class="cta-card">
+            <!-- ✏️ CTA CARD HEADLINE -->
+            <h3>Ready to kick off?</h3>
+            <!-- ✏️ CTA CARD BODY -->
+            <p>Fill out our intake form and we'll follow up within 2 business days with scoping and next steps.</p>
+            <!-- ✏️ CTA BUTTON: Change href to your intake form URL, and update label -->
+            <a href="#" class="btn">Submit a Request →</a>
+          </div>
+
+          <!-- ✏️ SCOPE NOTE: Eligibility / who this team supports -->
+          <div class="scope-note">
+            <strong>Who we support:</strong> This team primarily serves the PDP product surface — listing pages, booking flows, and host tools. Other teams: reach out anyway and we'll figure it out.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 3 — THE PROCESS
+  ══════════════════════════════════════════════ -->
+  <section id="how-we-work" aria-label="The Process">
+    <div class="section-inner">
+      <!-- ✏️ EYEBROW -->
+      <p class="eyebrow">Process</p>
+      <!-- ✏️ HEADLINE -->
+      <h2 class="section-h2">Here's how the magic happens.</h2>
+      <!-- ✏️ BLURB -->
+      <p class="section-blurb">Structured where it counts, flexible everywhere else. We run fast without cutting corners.</p>
+
+      <div class="steps-wrap">
+
+        <!-- ✏️ PROCESS STEPS: Edit step-name and step-desc for each card.
+             To add a 6th step: copy a step-card block, change the number.
+             To remove a step: delete the whole step-card block. -->
+
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <div class="step-name">Discovery</div>
+          <div class="step-desc">We dig into the problem space — user research, data, and stakeholder alignment before a single wireframe exists.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <div class="step-name">Define</div>
+          <div class="step-desc">Problem statement, success metrics, and scope — locked in before we explore. No ambiguous briefs.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <div class="step-name">Explore</div>
+          <div class="step-desc">Wide ideation, multiple directions, and fast iteration on the highest-potential concepts.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">04</div>
+          <div class="step-name">Validate</div>
+          <div class="step-desc">User testing, design reviews, and stakeholder sign-off. We ship with confidence, not just speed.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">05</div>
+          <div class="step-name">Deliver</div>
+          <div class="step-desc">Polished specs, redlines, close dev collaboration from build through launch. We don't ghost post-handoff.</div>
+        </div>
+
+      </div>
+
+      <!-- ✏️ CALLOUT BOX: Working norms, sprint cadence, expectations -->
+      <div class="process-callout">
+        <strong>How we operate:</strong> We work in 2-week design sprints synced to the product cycle. Design reviews happen Tuesdays. All Figma work lives in the shared org library — no rogue files, no mystery components.
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 4 — THE VAULT
+  ══════════════════════════════════════════════ -->
+  <section id="resources" aria-label="The Vault">
+    <div class="section-inner">
+      <!-- ✏️ EYEBROW -->
+      <p class="eyebrow">Resources</p>
+      <!-- ✏️ HEADLINE -->
+      <h2 class="section-h2">Everything you need, one place.</h2>
+      <!-- ✏️ BLURB -->
+      <p class="section-blurb">Canonical links for assets, docs, and tools. Bookmark this page. Share it. Stop asking in Slack.</p>
+
+      <div class="resource-grid">
+
+        <!-- ✏️ RESOURCE CARDS: Edit icon (emoji), resource-name, resource-desc,
+             resource-cta label, and the href on the wrapping <a> tag.
+             To add a card: copy a resource-card block and paste it here.
+             To remove: delete the whole resource-card block. -->
+
+        <a href="#" class="resource-card">
+          <div class="resource-icon">🎨</div>
+          <div class="resource-name">Figma Library</div>
+          <div class="resource-desc">The official component library. Production-ready, updated weekly. Don't use anything else in shipped work.</div>
+          <div class="resource-cta">Open in Figma</div>
+        </a>
+        <a href="#" class="resource-card">
+          <div class="resource-icon">📐</div>
+          <div class="resource-name">Design System Docs</div>
+          <div class="resource-desc">Foundations, tokens, patterns, and usage guidelines. The source of truth for how things look and why.</div>
+          <div class="resource-cta">Read the Docs</div>
+        </a>
+        <a href="#" class="resource-card">
+          <div class="resource-icon">📋</div>
+          <div class="resource-name">Intake Form</div>
+          <div class="resource-desc">Submit a design request. Takes 5 minutes. We'll follow up within 2 business days to scope together.</div>
+          <div class="resource-cta">Submit a Request</div>
+        </a>
+        <a href="#" class="resource-card">
+          <div class="resource-icon">🔬</div>
+          <div class="resource-name">Research Repository</div>
+          <div class="resource-desc">Past studies, synthesis docs, and user insights. Search here before commissioning new research.</div>
+          <div class="resource-cta">Browse Insights</div>
+        </a>
+        <a href="#" class="resource-card">
+          <div class="resource-icon">🎙️</div>
+          <div class="resource-name">Design Reviews</div>
+          <div class="resource-desc">Recurring Tuesdays. Add work to the agenda doc by Monday 5 pm PT. Crits are high signal — come prepared.</div>
+          <div class="resource-cta">Add to Agenda</div>
+        </a>
+        <a href="#" class="resource-card">
+          <div class="resource-icon">📊</div>
+          <div class="resource-name">Metrics Dashboard</div>
+          <div class="resource-desc">Conversion, engagement, and satisfaction data for PDP. Useful before scoping — read it first.</div>
+          <div class="resource-cta">View Dashboard</div>
+        </a>
+
+      </div>
+
+      <!-- ✏️ FOOTER NOTE: Maintenance contact and update cadence -->
+      <p class="footer-note">
+        ⚠️ Broken link? Ping <a href="#">#pdp-design</a> on Slack. This page is maintained by Design Ops and reviewed monthly.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       PAGE FOOTER
+  ══════════════════════════════════════════════ -->
+  <!-- ✏️ FOOTER TEXT -->
+  <footer class="page-footer">
+    #pdp-design — Internal use only. Not for external distribution.
+  </footer>
+
+
+  <script>
+    (function () {
+      const navLinks = document.querySelectorAll('.nav-tabs a[data-section]');
+      const sections = Array.from(document.querySelectorAll('section[id]'));
+      const navEl    = document.getElementById('nav');
+
+      if (navLinks.length) navLinks[0].classList.add('active');
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          const target = document.querySelector(link.getAttribute('href'));
+          if (!target) return;
+          const top = target.getBoundingClientRect().top + window.scrollY - navEl.offsetHeight;
+          window.scrollTo({ top, behavior: 'smooth' });
+        });
+      });
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            navLinks.forEach(l => l.classList.toggle('active', l.dataset.section === id));
+          }
+        });
+      }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
+
+      sections.forEach(s => observer.observe(s));
+    })();
+  </script>
+</body>
+</html>
