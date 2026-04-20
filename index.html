@@ -523,6 +523,38 @@
       line-height: 1.7;
     }
 
+    .step-raci {
+      display: flex;
+      gap: 0.375rem;
+      flex-wrap: wrap;
+      margin-top: 0.75rem;
+    }
+    .raci-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 0.25rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--snow);
+      color: var(--foggy);
+    }
+    .raci-pill .raci-badge {
+      font-size: 0.6rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      padding: 0.1rem 0.3rem;
+      border-radius: 999px;
+      line-height: 1.4;
+    }
+    .raci-r .raci-badge { background: var(--black); color: var(--white); }
+    .raci-a .raci-badge { background: var(--rausch); color: var(--white); }
+    .raci-c .raci-badge { background: var(--border); color: var(--hof); }
+    .raci-i .raci-badge { background: var(--snow); color: var(--foggy); border: 1px solid var(--border); }
+
     .process-callout {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -578,6 +610,23 @@
     @media (max-width: 600px) {
       .process-callout { grid-template-columns: 1fr; }
     }
+
+    /* ─── RACI KEY ─── */
+    .raci-key {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      max-width: 780px;
+    }
+    .raci-key-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      color: var(--foggy);
+    }
+    .raci-key-item .raci-badge { font-size: 0.6rem; font-weight: 900; letter-spacing: 0.06em; padding: 0.1rem 0.35rem; border-radius: 999px; line-height: 1.4; }
 
     /* ─── PROCESS INLINE NOTE ─── */
     .process-inline {
@@ -1133,7 +1182,15 @@
             <span class="step-num">Step 01</span>
             <div class="step-name">Kick-off</div>
           </div>
-          <div class="step-desc">Starts with a design brief, PRD, one-pager, or vision doc. Sometimes there are two kick-offs: an early one to align on concepts, and a second to bring Engineering in as the project moves into Detailed Design.</div>
+          <div>
+            <div class="step-desc">Starts with a design brief, PRD, one-pager, or vision doc. Sometimes there are two kick-offs: an early one to align on concepts, and a second to bring Engineering in as the project moves into Detailed Design.</div>
+            <div class="step-raci">
+              <span class="raci-pill raci-a"><span class="raci-badge">A</span> Design</span>
+              <span class="raci-pill raci-r"><span class="raci-badge">R</span> Product</span>
+              <span class="raci-pill raci-c"><span class="raci-badge">C</span> Eng</span>
+              <span class="raci-pill raci-r"><span class="raci-badge">R</span> Design PgM</span>
+            </div>
+          </div>
         </div>
 
         <div class="step-card">
@@ -1141,7 +1198,15 @@
             <span class="step-num">Step 02</span>
             <div class="step-name">Explore</div>
           </div>
-          <div class="step-desc">Design Team bake time. This phase produces concepts or "sketches" — wide ideation before any direction is locked. Space to be wrong fast.</div>
+          <div>
+            <div class="step-desc">Design Team bake time. This phase produces concepts or "sketches" — wide ideation before any direction is locked. Space to be wrong fast.</div>
+            <div class="step-raci">
+              <span class="raci-pill raci-r"><span class="raci-badge">R</span> Design</span>
+              <span class="raci-pill raci-c"><span class="raci-badge">C</span> Product</span>
+              <span class="raci-pill raci-i"><span class="raci-badge">I</span> Eng</span>
+              <span class="raci-pill raci-i"><span class="raci-badge">I</span> Design PgM</span>
+            </div>
+          </div>
         </div>
 
         <div class="step-card">
@@ -1149,7 +1214,15 @@
             <span class="step-num">Step 03</span>
             <div class="step-name">Refine</div>
           </div>
-          <div class="step-desc">A direction is decided. Design Team lays out all use cases and platform considerations for Detailed Design, checks with Accessibility Design, and begins scoping with the Eng team.</div>
+          <div>
+            <div class="step-desc">A direction is decided. Design Team lays out all use cases and platform considerations for Detailed Design, checks with Accessibility Design, and begins scoping with the Eng team.</div>
+            <div class="step-raci">
+              <span class="raci-pill raci-r"><span class="raci-badge">R</span> Design</span>
+              <span class="raci-pill raci-c"><span class="raci-badge">C</span> Product</span>
+              <span class="raci-pill raci-c"><span class="raci-badge">C</span> Eng</span>
+              <span class="raci-pill raci-r"><span class="raci-badge">R</span> Design PgM</span>
+            </div>
+          </div>
         </div>
 
         <div class="step-card">
@@ -1157,7 +1230,15 @@
             <span class="step-num">Step 04</span>
             <div class="step-name">Handoff</div>
           </div>
-          <div class="step-desc">Using Figma's Dev Mode. Usually a formal walkthrough where the Design Team presents to Engineering, answers questions, and finalizes specs before build begins.</div>
+          <div>
+            <div class="step-desc">Using Figma's Dev Mode. Usually a formal walkthrough where the Design Team presents to Engineering, answers questions, and finalizes specs before build begins.</div>
+            <div class="step-raci">
+              <span class="raci-pill raci-r"><span class="raci-badge">R</span> Design</span>
+              <span class="raci-pill raci-i"><span class="raci-badge">I</span> Product</span>
+              <span class="raci-pill raci-a"><span class="raci-badge">A</span> Eng</span>
+              <span class="raci-pill raci-r"><span class="raci-badge">R</span> Design PgM</span>
+            </div>
+          </div>
         </div>
 
         <div class="step-card">
@@ -1165,7 +1246,15 @@
             <span class="step-num">Step 05</span>
             <div class="step-name">Design QA</div>
           </div>
-          <div class="step-desc">Live Zoom build walkthrough, alpha build with tickets, or a Slack video for smaller features. Must happen before the ERF or feature is pushed live by Eng.</div>
+          <div>
+            <div class="step-desc">Live Zoom build walkthrough, alpha build with tickets, or a Slack video for smaller features. Must happen before the ERF or feature is pushed live by Eng.</div>
+            <div class="step-raci">
+              <span class="raci-pill raci-a"><span class="raci-badge">A</span> Design</span>
+              <span class="raci-pill raci-c"><span class="raci-badge">C</span> Product</span>
+              <span class="raci-pill raci-r"><span class="raci-badge">R</span> Eng</span>
+              <span class="raci-pill raci-r"><span class="raci-badge">R</span> Design PgM</span>
+            </div>
+          </div>
         </div>
 
         <div class="step-card">
@@ -1173,9 +1262,24 @@
             <span class="step-num">Step 06</span>
             <div class="step-name">ERF &amp; Iteration</div>
           </div>
-          <div class="step-desc">ERF read out, roadmap iteration, and follow-on work. Shipping is a checkpoint, not the finish line.</div>
+          <div>
+            <div class="step-desc">ERF read out, roadmap iteration, and follow-on work. Shipping is a checkpoint, not the finish line.</div>
+            <div class="step-raci">
+              <span class="raci-pill raci-c"><span class="raci-badge">C</span> Design</span>
+              <span class="raci-pill raci-r"><span class="raci-badge">R</span> Product</span>
+              <span class="raci-pill raci-a"><span class="raci-badge">A</span> Eng</span>
+              <span class="raci-pill raci-i"><span class="raci-badge">I</span> Design PgM</span>
+            </div>
+          </div>
         </div>
 
+      </div>
+
+      <div class="raci-key">
+        <div class="raci-key-item"><span class="raci-badge raci-r" style="background:var(--black);color:var(--white);">R</span> Responsible — does the work</div>
+        <div class="raci-key-item"><span class="raci-badge raci-a" style="background:var(--rausch);color:var(--white);">A</span> Accountable — owns the outcome</div>
+        <div class="raci-key-item"><span class="raci-badge raci-c" style="background:var(--border);color:var(--hof);">C</span> Consulted — provides input</div>
+        <div class="raci-key-item"><span class="raci-badge raci-i" style="background:var(--snow);color:var(--foggy);border:1px solid var(--border);">I</span> Informed — kept in the loop</div>
       </div>
 
       <!-- ✏️ INLINE NOTE: Approvals process -->
@@ -1184,10 +1288,10 @@
         <div class="process-inline-inner">
           <div class="process-inline-label">Getting the green light</div>
           <ul class="process-inline-text" style="margin: 0; padding-left: 1.125rem; display: flex; flex-direction: column; gap: 0.35rem;">
-            <li>Reviews happen via <a href="https://air.bb/mark-studio" target="_blank">#mark-studio</a> — but not every project needs the same sign-off</li>
-            <li>Could be blocking, an async heads-up, or nothing at all</li>
-            <li>Scope, size, and timeline all factor in</li>
-            <li>The Design Team makes the call and keeps XFN partners informed</li>
+            <li>Reviews happen via <a href="https://air.bb/mark-studio" target="_blank">#mark-studio</a> — but not every project needs the same sign-off.</li>
+            <li>Could be blocking, an async heads-up, or nothing at all.</li>
+            <li>Scope, size, and timeline all factor in.</li>
+            <li>The Design Team makes the call and keeps XFN partners informed.</li>
           </ul>
         </div>
       </div>
@@ -1204,7 +1308,7 @@
       <!-- ✏️ EYEBROW -->
       <p class="eyebrow">Resources</p>
       <!-- ✏️ HEADLINE -->
-      <h2 class="section-h2">Everything you need, one place.</h2>
+      <h2 class="section-h2">Every PDP Design resource, ready when you are.</h2>
       <!-- ✏️ BLURB -->
       <p class="section-blurb">Canonical links for assets, docs, and tools. Bookmark this page. Share it. Stop asking in Slack.</p>
 
