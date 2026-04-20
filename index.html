@@ -1,54 +1,40 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- ✏️ PAGE TITLE -->
-  <title>#pdp-design — Internal Hub</title>
+  <title>PDP Design Team</title>
 
   <!--
   ╔══════════════════════════════════════════════════════════════════╗
   ║  HOW TO EDIT THIS PAGE                                          ║
-  ║                                                                  ║
-  ║  Open this file in any text editor (VS Code, Sublime, etc.)     ║
   ║  Search for  ✏️  to jump to every editable content spot.        ║
-  ║                                                                  ║
-  ║  Each ✏️ comment tells you exactly what to change.              ║
-  ║  You never need to touch the CSS or JS — just the HTML below.   ║
   ╚══════════════════════════════════════════════════════════════════╝
   -->
 
   <style>
-    /* ─── FONT: Airbnb Cereal ───────────────────────────────────────
-       Cereal is served internally at Airbnb. If you're outside the
-       internal network, the page falls back to Inter → system-ui.
-       To self-host: drop the .woff2 files next to this HTML and
-       uncomment the @font-face blocks below.
-    ──────────────────────────────────────────────────────────────── */
-
-    
-    @font-face {                                                                                                                                                                                         
-    font-family: 'Cereal';                                                                                                                                                                             
-    src: url('Cereal.woff2') format('woff2');                                                                                                          
-    font-weight: 100 900;                                                                                                                                                                              
-    font-style: normal;                                                                                                                                                                                
-  }
-    
+    @font-face {
+      font-family: 'Cereal';
+      src: url('AirbnbCerealVF_W_Wght.8816d9e5c3b6a860636193e36b6ac4e4.woff2') format('woff2');
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: swap;
+    }
 
     /* ─── TOKENS ─── */
     :root {
-      --rausch:  #FF5A5F;   /* accent — CTAs + active states only  */
-      --black:   #222222;   /* strongest text                       */
-      --hof:     #484848;   /* primary body text                    */
-      --foggy:   #767676;   /* secondary / metadata text            */
-      --mist:    #B0B0B0;   /* disabled / subtle                    */
+      --rausch:  #FF5A5F;
+      --black:   #222222;
+      --hof:     #484848;
+      --foggy:   #767676;
       --white:   #FFFFFF;
-      --snow:    #F7F7F7;   /* section backgrounds                  */
-      --border:  #EBEBEB;   /* dividers + card borders              */
+      --snow:    #F7F7F7;
+      --border:  #EBEBEB;
       --nav-h:   64px;
       --r:       12px;
-      --font:    'Airbnb Cereal App', 'Cereal', 'Inter',
-                 -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      --font:    'Cereal', 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     }
 
     /* ─── RESET ─── */
@@ -174,14 +160,12 @@
       margin: 0 auto;
       padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 6vw, 4rem);
       display: grid;
-      grid-template-columns: 1fr 360px;
+      grid-template-columns: 1fr 400px;
       gap: 3rem 5rem;
       align-items: start;
       position: relative;
       z-index: 1;
     }
-
-    .intro-copy .eyebrow { margin-bottom: 1.25rem; }
 
     .intro-h1 {
       font-size: clamp(2.25rem, 5.5vw, 3.75rem);
@@ -196,22 +180,16 @@
       color: var(--rausch);
     }
 
-    .intro-tagline {
-      font-size: 1.125rem;
-      font-weight: 500;
-      color: var(--foggy);
-      line-height: 1.55;
-      margin-bottom: 1.375rem;
-      max-width: 520px;
-    }
-
     .intro-body {
-      font-size: 0.9375rem;
+      font-size: 1rem;
       color: var(--hof);
       line-height: 1.75;
-      max-width: 540px;
+      max-width: 560px;
     }
 
+    .intro-body strong { color: var(--black); }
+
+    /* ─── TEAM CARD ─── */
     .team-card {
       background: var(--white);
       border-radius: var(--r);
@@ -232,27 +210,47 @@
     .avatar-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
+      gap: 1.25rem 0.75rem;
     }
 
     .avatar-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.35rem;
+      gap: 0.3rem;
       text-align: center;
     }
 
     .avatar-circle {
       width: 52px; height: 52px;
       border-radius: 50%;
-      background: var(--hof);
+      background: var(--black);
+      border: 2px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 0.8125rem;
       font-weight: 800;
       color: white;
+      letter-spacing: 0.02em;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .avatar-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 50%;
+      filter: grayscale(100%);
+      display: block;
+    }
+
+    .avatar-circle.sponsor {
+      background: var(--white);
+      color: var(--black);
+      border: 2px solid var(--black);
     }
 
     .avatar-name {
@@ -261,10 +259,35 @@
       color: var(--black);
       line-height: 1.3;
     }
+    .avatar-name a {
+      color: var(--black);
+      text-decoration: none;
+    }
+    .avatar-name a:hover {
+      color: var(--rausch);
+      text-decoration: underline;
+    }
+
     .avatar-role {
-      font-size: 0.625rem;
+      font-size: 0.5938rem;
       color: var(--foggy);
       line-height: 1.25;
+    }
+    .avatar-badge {
+      display: inline-block;
+      font-size: 0.5625rem;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      background: var(--black);
+      color: white;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+    }
+    .avatar-badge.sponsor-badge {
+      background: var(--snow);
+      color: var(--foggy);
+      border: 1px solid var(--border);
     }
 
     /* ─── SECTION 2: COLLAB ─── */
@@ -329,9 +352,8 @@
       font-weight: 500;
       color: var(--hof);
     }
+    .contact-val a { color: var(--hof); }
     .contact-val a:hover { text-decoration: underline; }
-
-    .collab-right { display: flex; flex-direction: column; gap: 1.25rem; }
 
     .cta-card {
       background: var(--black);
@@ -375,23 +397,26 @@
       box-shadow: 0 8px 24px rgba(255,90,95,.35);
     }
 
-    .scope-note {
-      background: var(--snow);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.125rem 1.375rem;
-      font-size: 0.875rem;
-      color: var(--hof);
-      line-height: 1.65;
-    }
-    .scope-note strong { color: var(--black); }
-
     /* ─── SECTION 3: HOW WE WORK ─── */
     #how-we-work { background: var(--snow); border-top: 1px solid var(--border); }
 
+    .process-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--foggy);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 0.875rem;
+      margin-bottom: 1.75rem;
+    }
+
     .steps-wrap {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 1rem;
       margin-bottom: 2rem;
     }
@@ -401,12 +426,6 @@
       border-radius: var(--r);
       padding: 1.5rem 1.25rem;
       border: 1px solid var(--border);
-      transition: border-color .18s, box-shadow .18s, transform .18s;
-    }
-    .step-card:hover {
-      border-color: var(--black);
-      box-shadow: 0 6px 24px rgba(0,0,0,.07);
-      transform: translateY(-2px);
     }
 
     .step-num {
@@ -441,12 +460,183 @@
       background: var(--white);
       border-left: 4px solid var(--border);
       border-radius: 0 8px 8px 0;
-      padding: 1.125rem 1.5rem;
+      padding: 1.25rem 1.5rem;
       font-size: 0.9375rem;
       color: var(--hof);
-      line-height: 1.65;
+      line-height: 1.75;
     }
     .process-callout strong { color: var(--black); }
+    .process-callout a { color: var(--hof); text-decoration: underline; }
+    .process-callout a:hover { color: var(--rausch); }
+
+    /* ─── TRACKER EMBED ─── */
+    .tracker-wrap {
+      margin-top: 2rem;
+    }
+    .tracker-label {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--foggy);
+      margin-bottom: 0.875rem;
+    }
+    .tracker-embed {
+      width: 100%;
+      height: 420px;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      background: var(--white);
+    }
+    .tracker-fallback {
+      width: 100%;
+      padding: 2rem;
+      border: 1px dashed var(--border);
+      border-radius: var(--r);
+      background: var(--white);
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--foggy);
+      line-height: 1.65;
+    }
+    .tracker-fallback a { color: var(--black); font-weight: 700; text-decoration: underline; }
+
+    /* ─── ENGAGEMENT MODELS ─── */
+    .engage-wrap {
+      margin-top: 2.5rem;
+    }
+
+    .engage-label {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--foggy);
+      margin-bottom: 1.125rem;
+    }
+
+    .engage-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .engage-card {
+      background: var(--snow);
+      border-radius: var(--r);
+      padding: 1.5rem 1.375rem;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+      transition: border-color .18s, box-shadow .18s;
+    }
+    .engage-card:hover {
+      border-color: var(--black);
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    }
+    .engage-card.primary {
+      border-color: var(--black);
+      background: var(--white);
+    }
+
+    .engage-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.375rem;
+    }
+
+    .engage-name {
+      font-size: 0.9375rem;
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      color: var(--black);
+    }
+
+    .engage-desc {
+      font-size: 0.8125rem;
+      color: var(--foggy);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .engage-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--rausch);
+      margin-top: 0.625rem;
+      text-decoration: none;
+    }
+    .engage-link::after { content: ' →'; }
+    .engage-link:hover { text-decoration: underline; }
+
+    .engage-badge {
+      display: inline-block;
+      font-size: 0.5625rem;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      background: var(--black);
+      color: white;
+      padding: 0.1rem 0.45rem;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      align-self: flex-start;
+    }
+
+    /* ─── SECTION 5: PDP ANYTHING ─── */
+    #pdp-anything {
+      background: var(--snow);
+      border-top: 1px solid var(--border);
+    }
+
+    .placeholder-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: clamp(4rem, 10vw, 7rem) clamp(1.5rem, 6vw, 4rem);
+      min-height: 360px;
+      gap: 1rem;
+    }
+
+    .placeholder-icon {
+      font-size: 2.5rem;
+      opacity: .35;
+    }
+
+    .placeholder-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--black);
+    }
+
+    .placeholder-sub {
+      font-size: 0.9375rem;
+      color: var(--foggy);
+      max-width: 420px;
+      line-height: 1.65;
+    }
+
+    .placeholder-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--foggy);
+      border: 1.5px dashed var(--border);
+      border-radius: 999px;
+      padding: 0.35rem 1rem;
+      margin-top: 0.5rem;
+    }
 
     /* ─── SECTION 4: RESOURCES ─── */
     #resources { background: var(--white); border-top: 1px solid var(--border); }
@@ -524,8 +714,9 @@
     /* ─── RESPONSIVE ─── */
     @media (max-width: 960px) {
       .intro-layout { grid-template-columns: 1fr; }
-      .team-card { max-width: 400px; }
+      .team-card { max-width: 420px; }
       .collab-grid { grid-template-columns: 1fr; }
+      .engage-grid { grid-template-columns: 1fr; }
       .steps-wrap { grid-template-columns: repeat(3, 1fr); }
       .resource-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -545,14 +736,16 @@
        NAV
   ══════════════════════════════════════════════ -->
   <nav id="nav" role="navigation" aria-label="Primary">
-    <!-- ✏️ NAV BRAND: Team name shown top-left -->
-    <div class="nav-brand">#pdp-design</div>
+    <!-- ✏️ NAV BRAND -->
+    <div class="nav-brand">PDP Design</div>
     <ul class="nav-tabs" role="tablist">
-      <!-- ✏️ NAV TABS: Change the visible label text. Don't change href or data-section. -->
+      <!-- ✏️ NAV TABS: Change visible label only. Don't change href or data-section. -->
       <li><a href="#intro"       data-section="intro"       role="tab">Who We Are</a></li>
       <li><a href="#collab"      data-section="collab"      role="tab">Work With Us</a></li>
       <li><a href="#how-we-work" data-section="how-we-work" role="tab">The Process</a></li>
       <li><a href="#resources"   data-section="resources"   role="tab">The Vault</a></li>
+      <!-- ✏️ NAV TAB 5: Placeholder for PDP anything app -->
+      <li><a href="#pdp-anything" data-section="pdp-anything" role="tab">PDP Anything ✦</a></li>
     </ul>
   </nav>
 
@@ -563,17 +756,14 @@
   <section id="intro" aria-label="Who We Are">
     <div class="intro-layout">
       <div class="intro-copy">
-        <!-- ✏️ EYEBROW: Small label above the headline -->
-        <p class="eyebrow">Design Team · PDP</p>
 
-        <!-- ✏️ HERO HEADLINE: Wrap key words in <em> for Rausch red -->
-        <h1 class="intro-h1">We're <em>#pdp-design.</em><br>Let's build something.</h1>
+        <!-- ✏️ HEADLINE: Text inside <em> renders in Rausch red -->
+        <h1 class="intro-h1">We're the <em>PDP Design</em> team.</h1>
 
-        <!-- ✏️ TAGLINE: 1–2 sentence vibe statement -->
-        <p class="intro-tagline">The product design team behind your next great idea — shipping fast, thinking deeply.</p>
-
-        <!-- ✏️ BODY COPY: 2–3 sentences about the team's mission -->
-        <p class="intro-body">We partner with PMs, engineers, and stakeholders across the product to design experiences that actually work. From zero-to-one concepts to polishing production flows, we bring craft and clarity to every pixel. Our mission: make the product feel inevitable.</p>
+        <!-- ✏️ BODY COPY: Includes PDP definition and lines of business -->
+        <p class="intro-body">
+          <strong>PDP stands for Product Detail Page</strong> — the listing page where guests discover, evaluate, and decide to book a stay or experience. Our team designs across all of Airbnb's supply lines: <strong>Homes, Experiences, Services, Hotels,</strong> and <strong>Luxe</strong> (the latter two as active incubations). Beyond PDPs, we also support the <strong>Guest App</strong> and software-side incubation work for Hotels and Luxe.
+        </p>
       </div>
 
       <div>
@@ -582,39 +772,88 @@
           <p class="team-card-label">The Team</p>
           <div class="avatar-grid">
 
-            <!-- ✏️ TEAM MEMBERS: Change initials, name, and role for each person.
-                 To add more: copy one avatar-item block and paste it here.
-                 To remove: delete the whole avatar-item block. -->
+            <!--
+            ✏️ TEAM MEMBERS:
+               - Each avatar-circle has an <img> that loads from one.airbnb.com.
+               - If the photo fails to load (e.g. outside the network), initials appear as fallback.
+               - To update a photo: change the src URL.
+               - To hyperlink a name: the <a> inside avatar-name already points to their One profile.
+               - To add a person: copy an avatar-item block.
+               - To remove: delete the block.
+            -->
 
             <div class="avatar-item">
-              <div class="avatar-circle">MR</div>
-              <div class="avatar-name">Maya R.</div>
-              <div class="avatar-role">Lead Designer</div>
+              <div class="avatar-circle" data-initials="PM">
+                <img src="peter_mcclelland.avif" alt="Peter McClelland" onerror="this.style.display='none'">
+              </div>
+              <div class="avatar-name"><a href="https://one.airbnb.com/people/peter_mcclelland" target="_blank">Peter McClelland</a></div>
+              <div class="avatar-role">Design Lead</div>
+              <span class="avatar-badge">Lead</span>
             </div>
+
             <div class="avatar-item">
-              <div class="avatar-circle">JL</div>
-              <div class="avatar-name">James L.</div>
-              <div class="avatar-role">Sr. Designer</div>
-            </div>
-            <div class="avatar-item">
-              <div class="avatar-circle">PK</div>
-              <div class="avatar-name">Priya K.</div>
-              <div class="avatar-role">UX Research</div>
-            </div>
-            <div class="avatar-item">
-              <div class="avatar-circle">TS</div>
-              <div class="avatar-name">Theo S.</div>
-              <div class="avatar-role">Content Design</div>
-            </div>
-            <div class="avatar-item">
-              <div class="avatar-circle">AL</div>
-              <div class="avatar-name">Ana L.</div>
+              <div class="avatar-circle" data-initials="SG">
+                <img src="sevilla_garza.avif" alt="Sevilla Garza" onerror="this.style.display='none'">
+              </div>
+              <div class="avatar-name"><a href="https://one.airbnb.com/people/sevilla_garza" target="_blank">Sevilla Garza</a></div>
               <div class="avatar-role">Designer</div>
             </div>
+
             <div class="avatar-item">
-              <div class="avatar-circle">DC</div>
-              <div class="avatar-name">Dev C.</div>
-              <div class="avatar-role">Design Ops</div>
+              <div class="avatar-circle" data-initials="ML">
+                <img src="miyoung_lee.avif" alt="Miyoung Lee" onerror="this.style.display='none'">
+              </div>
+              <div class="avatar-name"><a href="https://one.airbnb.com/people/miyoung_lee" target="_blank">Miyoung Lee</a></div>
+              <div class="avatar-role">Designer</div>
+            </div>
+
+            <div class="avatar-item">
+              <div class="avatar-circle" data-initials="JF">
+                <img src="jared_fancy.avif" alt="Jared Fancy" onerror="this.style.display='none'">
+              </div>
+              <div class="avatar-name"><a href="https://one.airbnb.com/people/jared_fancy" target="_blank">Jared Fancy</a></div>
+              <div class="avatar-role">Designer</div>
+            </div>
+
+            <div class="avatar-item">
+              <div class="avatar-circle" data-initials="SS">
+                <img src="saya_sugimura.avif" alt="Saya Sugimura" onerror="this.style.display='none'">
+              </div>
+              <div class="avatar-name"><a href="https://one.airbnb.com/people/saya_sugimura" target="_blank">Saya Sugimura</a></div>
+              <div class="avatar-role">Designer</div>
+            </div>
+
+            <div class="avatar-item">
+              <div class="avatar-circle" data-initials="AK">
+                <img src="aliza_kravatz.avif" alt="Aliza Kravatz" onerror="this.style.display='none'">
+              </div>
+              <div class="avatar-name"><a href="https://one.airbnb.com/people/aliza_kravatz" target="_blank">Aliza Kravatz</a></div>
+              <div class="avatar-role">Designer</div>
+            </div>
+
+            <div class="avatar-item">
+              <div class="avatar-circle" data-initials="MM">
+                <img src="michelle_mcalister.avif" alt="Michelle McAlister" onerror="this.style.display='none'">
+              </div>
+              <div class="avatar-name"><a href="https://one.airbnb.com/people/michelle_mcalister" target="_blank">Michelle McAlister</a></div>
+              <div class="avatar-role">Designer</div>
+            </div>
+
+            <div class="avatar-item">
+              <div class="avatar-circle" data-initials="CN">
+                <img src="chloe_nguyen.avif" alt="Chloe Nguyen" onerror="this.style.display='none'">
+              </div>
+              <div class="avatar-name"><a href="https://one.airbnb.com/people/chloe_nguyen" target="_blank">Chloe Nguyen</a></div>
+              <div class="avatar-role">Designer</div>
+            </div>
+
+            <div class="avatar-item">
+              <div class="avatar-circle sponsor" data-initials="ML">
+                <img src="https://one.airbnb.com/people/mark_laughlin/photo" alt="Mark Laughlin" onerror="this.style.display='none'">
+              </div>
+              <div class="avatar-name"><a href="https://one.airbnb.com/people/mark_laughlin" target="_blank">Mark Laughlin</a></div>
+              <div class="avatar-role">Design Sponsor</div>
+              <span class="avatar-badge sponsor-badge">Sponsor</span>
             </div>
 
           </div>
@@ -632,59 +871,89 @@
       <!-- ✏️ EYEBROW -->
       <p class="eyebrow">Collaborate</p>
       <!-- ✏️ HEADLINE -->
-      <h2 class="section-h2">Got a project? Slide into our intake.</h2>
-      <!-- ✏️ BLURB -->
-      <p class="section-blurb">Need design support — a new feature, a flow audit, or a full product partner? This is where you start.</p>
+      <h2 class="section-h2">Got a project? Let's talk.</h2>
 
-      <div class="collab-grid">
+      <!-- ✏️ ENGAGEMENT MODELS: Edit name, description, emoji, and links as needed -->
+      <div class="engage-wrap">
+        <p class="engage-label">How We Engage</p>
+        <div class="engage-grid">
+
+          <div class="engage-card primary">
+            <span class="engage-badge">Primary</span>
+            <div class="engage-icon">🗺️</div>
+            <div class="engage-name">Team-Driven</div>
+            <div class="engage-desc">The majority of PDP design work flows through our quarterly roadmap planning process. Internal team drives updates through structured planning cycles.</div>
+            <div style="display:flex;flex-direction:column;gap:0.25rem;margin-top:0.625rem;">
+              <!-- ✏️ LINKS: Update hrefs as needed -->
+              <a href="https://docs.google.com/presentation/d/1LWpVb2tBVjiQprM1n3DtBIwdkv4owozhOh3_y8QWSTQ/edit?slide=id.gc91b80c485_0_550#slide=id.gc91b80c485_0_550" class="engage-link" target="_blank" style="margin-top:0">Roadmap Planning Process</a>
+              <a href="https://airtable.com/appFixO6p3rlIhoJV/pagedt2yW5CF5x3UO" class="engage-link" target="_blank" style="margin-top:0">PDP Roadmap</a>
+            </div>
+          </div>
+
+          <div class="engage-card">
+            <div class="engage-icon">🧪</div>
+            <div class="engage-name">Incubation-Led</div>
+            <div class="engage-desc">Lines of business incubations (Hotels, Luxe) request ERF-scoped updates. Learnings are designed to apply back to the largest supply line: Homes.</div>
+            <a href="https://airtable.com/appkEzkHX7JRhvo6M/pagG1yaxypYWQWlxj" class="engage-link" target="_blank">Hotels Roadmap</a>
+            <!-- ✏️ LUXE ROADMAP: Replace href when available -->
+            <a href="#" class="engage-link" target="_blank" style="color:var(--foggy);cursor:default" onclick="return false">Luxe Roadmap <span style="font-size:0.625rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;background:var(--snow);border:1px solid var(--border);border-radius:4px;padding:0.1rem 0.35rem;margin-left:0.25rem;color:var(--foggy)">Soon</span></a>
+          </div>
+
+          <div class="engage-card">
+            <div class="engage-icon">🔌</div>
+            <div class="engage-name">Plug-In</div>
+            <div class="engage-desc">Teams leverage the modular PDP architecture to plug and play an iteration on the existing PDP without requiring a full redesign.</div>
+            <!-- ✏️ PLUG-IN LINK: Replace href when available -->
+            <a href="#" class="engage-link" style="color:var(--foggy);cursor:default;margin-top:0.625rem" onclick="return false">Learn more <span style="font-size:0.625rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;background:var(--snow);border:1px solid var(--border);border-radius:4px;padding:0.1rem 0.35rem;margin-left:0.25rem;color:var(--foggy)">Soon</span></a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ✏️ ONE TEAM NOTE: Edit as needed -->
+      <div class="process-callout" style="margin-top:2rem;">
+        <strong>We operate as one team.</strong> Designers divide and conquer across roadmaps and surfaces, but we stay deeply connected — sharing context, aligning on platform patterns, and making sure no work happens in a silo. One team, many surfaces.
+      </div>
+
+      <div class="collab-grid" style="margin-top:2.5rem;">
+
+        <!-- LEFT: Contact info -->
         <div class="contact-card">
           <!-- ✏️ CONTACT CARD LABEL -->
           <p class="contact-card-label">How to Reach Us</p>
 
-          <!-- ✏️ SLACK: Change href to your Slack deep link, and the visible text -->
+          <!-- ✏️ SLACK: Replace href with your Slack channel deep link -->
           <div class="contact-row">
             <div class="contact-icon">💬</div>
             <div class="contact-meta">
               <span class="contact-key">Slack</span>
-              <span class="contact-val"><a href="#">#pdp-design</a></span>
+              <span class="contact-val"><a href="#">#pdp-design-collabs</a></span>
             </div>
           </div>
 
-          <!-- ✏️ EMAIL: Change href to mailto:your@email.com and update visible text -->
+          <!-- ✏️ PROJECT TRACKER: Links to Slack list -->
           <div class="contact-row">
-            <div class="contact-icon">✉️</div>
+            <div class="contact-icon">🗂️</div>
             <div class="contact-meta">
-              <span class="contact-key">Email</span>
-              <span class="contact-val"><a href="#">pdp-design@company.com</a></span>
+              <span class="contact-key">Project Tracker</span>
+              <span class="contact-val"><a href="https://airbnb.enterprise.slack.com/lists/T02511RD4/F0AMUMGH7JQ" target="_blank">View our project tracker</a></span>
             </div>
           </div>
 
-          <!-- ✏️ OFFICE HOURS: Update the schedule or link -->
-          <div class="contact-row">
-            <div class="contact-icon">🗓️</div>
-            <div class="contact-meta">
-              <span class="contact-key">Office Hours</span>
-              <span class="contact-val">Thursdays 2–3 pm PT</span>
-            </div>
-          </div>
         </div>
 
-        <div class="collab-right">
-          <div class="cta-card">
-            <!-- ✏️ CTA CARD HEADLINE -->
-            <h3>Ready to kick off?</h3>
-            <!-- ✏️ CTA CARD BODY -->
-            <p>Fill out our intake form and we'll follow up within 2 business days with scoping and next steps.</p>
-            <!-- ✏️ CTA BUTTON: Change href to your intake form URL, and update label -->
-            <a href="#" class="btn">Submit a Request →</a>
-          </div>
-
-          <!-- ✏️ SCOPE NOTE: Eligibility / who this team supports -->
-          <div class="scope-note">
-            <strong>Who we support:</strong> This team primarily serves the PDP product surface — listing pages, booking flows, and host tools. Other teams: reach out anyway and we'll figure it out.
-          </div>
+        <!-- RIGHT: CTA card -->
+        <div class="cta-card">
+          <!-- ✏️ CTA CARD HEADLINE -->
+          <h3>Ready to kick off?</h3>
+          <!-- ✏️ CTA CARD BODY -->
+          <p>Fill out our Slack intake form and we'll follow up within 1 business day with scoping and next steps.</p>
+          <!-- ✏️ CTA BUTTON: Replace href with your Slack form URL -->
+          <a href="#" class="btn">Submit a Request →</a>
         </div>
+
       </div>
+
     </div>
   </section>
 
@@ -699,46 +968,70 @@
       <!-- ✏️ HEADLINE -->
       <h2 class="section-h2">Here's how the magic happens.</h2>
       <!-- ✏️ BLURB -->
-      <p class="section-blurb">Structured where it counts, flexible everywhere else. We run fast without cutting corners.</p>
+      <p class="section-blurb">We move fast, stay agile, and connect the dots across the platform to deliver quality at every surface.</p>
+
+      <!-- ✏️ NON-LINEAR NOTE: Edit or remove this pill as needed -->
+      <div class="process-note">
+        ↻ These checkpoints aren't linear — projects may revisit or skip steps depending on scope and stage.
+      </div>
 
       <div class="steps-wrap">
 
-        <!-- ✏️ PROCESS STEPS: Edit step-name and step-desc for each card.
-             To add a 6th step: copy a step-card block, change the number.
-             To remove a step: delete the whole step-card block. -->
+        <!-- ✏️ PROCESS STEPS: Edit step-name and step-desc.
+             To add a step: copy a step-card block and update the number.
+             To remove: delete the whole step-card block. -->
 
         <div class="step-card">
           <div class="step-num">01</div>
-          <div class="step-name">Discovery</div>
-          <div class="step-desc">We dig into the problem space — user research, data, and stakeholder alignment before a single wireframe exists.</div>
+          <div class="step-name">Kick-off</div>
+          <div class="step-desc">Starts with a design brief, PRD, one-pager, or vision doc. Ideally the full working group joins — PMM, Eng, and partners. Sometimes there are two kick-offs: an early one to align on concepts, and a second to bring Engineering in as the project moves into detailed design.</div>
         </div>
+
         <div class="step-card">
           <div class="step-num">02</div>
-          <div class="step-name">Define</div>
-          <div class="step-desc">Problem statement, success metrics, and scope — locked in before we explore. No ambiguous briefs.</div>
+          <div class="step-name">Explore</div>
+          <div class="step-desc">Design bake time. This phase produces concepts or "sketches" — wide ideation before any direction is locked. Space to be wrong fast.</div>
         </div>
+
         <div class="step-card">
           <div class="step-num">03</div>
-          <div class="step-name">Explore</div>
-          <div class="step-desc">Wide ideation, multiple directions, and fast iteration on the highest-potential concepts.</div>
+          <div class="step-name">Refine</div>
+          <div class="step-desc">A direction is decided. Design lays out all use cases and platform considerations, checks with Accessibility Design, and begins scoping with the Eng team.</div>
         </div>
+
         <div class="step-card">
           <div class="step-num">04</div>
-          <div class="step-name">Validate</div>
-          <div class="step-desc">User testing, design reviews, and stakeholder sign-off. We ship with confidence, not just speed.</div>
+          <div class="step-name">Handoff</div>
+          <div class="step-desc">Using Figma's Dev Mode. Usually a formal walkthrough where design presents to Engineering, answers questions, and finalizes specs before build begins.</div>
         </div>
+
         <div class="step-card">
           <div class="step-num">05</div>
-          <div class="step-name">Deliver</div>
-          <div class="step-desc">Polished specs, redlines, close dev collaboration from build through launch. We don't ghost post-handoff.</div>
+          <div class="step-name">Design QA</div>
+          <div class="step-desc">Live Zoom build walkthrough, alpha build with tickets, or a Slack video for smaller features. Must happen before the ERF or feature is pushed live by Eng.</div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">06</div>
+          <div class="step-name">ERF & Iteration</div>
+          <div class="step-desc">ERF read out, roadmap iteration, and follow-on work. Shipping is a checkpoint, not the finish line.</div>
         </div>
 
       </div>
 
-      <!-- ✏️ CALLOUT BOX: Working norms, sprint cadence, expectations -->
+      <!-- ✏️ CALLOUT BOX: Working norms and approvals process -->
       <div class="process-callout">
-        <strong>How we operate:</strong> We work in 2-week design sprints synced to the product cycle. Design reviews happen Tuesdays. All Figma work lives in the shared org library — no rogue files, no mystery components.
+        <strong>How we operate:</strong> Designs are reviewed with Design Sponsors via <strong>#mark-studio</strong> and/or partner team Sponsor reviews. It's the design team's responsibility to ensure design alignment and approvals before shipping anything.<br><br>
+        We use <strong>AirTable</strong> as our roadmap source of truth. Everything we work on is tracked in our design tracker — view the live channel at <a href="https://airbnb.enterprise.slack.com/archives/C08UUJRV3DZ" target="_blank">#pdp-design tracker</a>.
+        <!-- ✏️ TRACKER EMBED: If you have an AirTable share/embed URL, replace the src below and uncomment the iframe. Slack channel URLs cannot be embedded. -->
+        <!--
+        <div class="tracker-wrap">
+          <p class="tracker-label">Design Tracker — Live View</p>
+          <iframe class="tracker-embed" src="PASTE_YOUR_AIRTABLE_EMBED_URL_HERE" frameborder="0" allowfullscreen></iframe>
+        </div>
+        -->
       </div>
+
     </div>
   </section>
 
@@ -757,10 +1050,8 @@
 
       <div class="resource-grid">
 
-        <!-- ✏️ RESOURCE CARDS: Edit icon (emoji), resource-name, resource-desc,
-             resource-cta label, and the href on the wrapping <a> tag.
-             To add a card: copy a resource-card block and paste it here.
-             To remove: delete the whole resource-card block. -->
+        <!-- ✏️ RESOURCE CARDS: Edit icon (emoji), name, description, cta label, and href.
+             To add: copy a resource-card block. To remove: delete the block. -->
 
         <a href="#" class="resource-card">
           <div class="resource-icon">🎨</div>
@@ -777,7 +1068,7 @@
         <a href="#" class="resource-card">
           <div class="resource-icon">📋</div>
           <div class="resource-name">Intake Form</div>
-          <div class="resource-desc">Submit a design request. Takes 5 minutes. We'll follow up within 2 business days to scope together.</div>
+          <div class="resource-desc">Submit a design request via Slack form. We'll follow up within 1 business day to scope together.</div>
           <div class="resource-cta">Submit a Request</div>
         </a>
         <a href="#" class="resource-card">
@@ -787,24 +1078,38 @@
           <div class="resource-cta">Browse Insights</div>
         </a>
         <a href="#" class="resource-card">
-          <div class="resource-icon">🎙️</div>
-          <div class="resource-name">Design Reviews</div>
-          <div class="resource-desc">Recurring Tuesdays. Add work to the agenda doc by Monday 5 pm PT. Crits are high signal — come prepared.</div>
-          <div class="resource-cta">Add to Agenda</div>
+          <div class="resource-icon">🗂️</div>
+          <div class="resource-name">Design Tracker</div>
+          <div class="resource-desc">AirTable is our roadmap source of truth. Everything the team is working on lives here.</div>
+          <div class="resource-cta">View Tracker</div>
         </a>
-        <a href="#" class="resource-card">
-          <div class="resource-icon">📊</div>
-          <div class="resource-name">Metrics Dashboard</div>
-          <div class="resource-desc">Conversion, engagement, and satisfaction data for PDP. Useful before scoping — read it first.</div>
-          <div class="resource-cta">View Dashboard</div>
+        <a href="https://airbnb.enterprise.slack.com/archives/C08UUJRV3DZ" class="resource-card" target="_blank">
+          <div class="resource-icon">💬</div>
+          <div class="resource-name">#pdp-design-collabs</div>
+          <div class="resource-desc">Our primary Slack channel. Drop a question, start a collab, or stay in the loop on what the team is shipping.</div>
+          <div class="resource-cta">Open in Slack</div>
         </a>
 
       </div>
 
-      <!-- ✏️ FOOTER NOTE: Maintenance contact and update cadence -->
+      <!-- ✏️ FOOTER NOTE -->
       <p class="footer-note">
-        ⚠️ Broken link? Ping <a href="#">#pdp-design</a> on Slack. This page is maintained by Design Ops and reviewed monthly.
+        ⚠️ Broken link? Ping <a href="#">#pdp-design-collabs</a> on Slack. This page is maintained by the team and reviewed monthly.
       </p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 5 — PDP ANYTHING (PLACEHOLDER)
+  ══════════════════════════════════════════════ -->
+  <section id="pdp-anything" aria-label="PDP Anything">
+    <div class="placeholder-wrap">
+      <div class="placeholder-icon">✦</div>
+      <!-- ✏️ PLACEHOLDER: Update when the app is ready -->
+      <h2 class="placeholder-title">PDP Anything</h2>
+      <p class="placeholder-sub">An app to explore, generate, and remix PDP concepts across supply lines. Coming soon.</p>
+      <span class="placeholder-pill">⏳ In development</span>
     </div>
   </section>
 
@@ -814,11 +1119,12 @@
   ══════════════════════════════════════════════ -->
   <!-- ✏️ FOOTER TEXT -->
   <footer class="page-footer">
-    #pdp-design — Internal use only. Not for external distribution.
+    PDP Design — Internal use only. Not for external distribution.
   </footer>
 
 
   <script>
+    // ── Nav active state ──────────────────────────────────────────
     (function () {
       const navLinks = document.querySelectorAll('.nav-tabs a[data-section]');
       const sections = Array.from(document.querySelectorAll('section[id]'));
@@ -847,6 +1153,17 @@
 
       sections.forEach(s => observer.observe(s));
     })();
+
+    // ── Avatar photo fallback: show initials if image fails to load ──
+    document.querySelectorAll('.avatar-circle[data-initials]').forEach(circle => {
+      const img = circle.querySelector('img');
+      if (!img) return;
+      const initials = circle.dataset.initials;
+      img.addEventListener('error', () => {
+        img.remove();
+        circle.textContent = initials;
+      });
+    });
   </script>
 </body>
 </html>
