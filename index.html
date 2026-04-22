@@ -555,6 +555,22 @@
     .raci-c .raci-badge { background: var(--border); color: var(--hof); }
     .raci-i .raci-badge { background: var(--snow); color: var(--foggy); border: 1px solid var(--border); }
 
+    .checkpoint-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      font-size: 0.5625rem;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--rausch);
+      border: 1px solid var(--rausch);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      margin-top: 0.375rem;
+      align-self: flex-start;
+    }
+
     .process-callout {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1177,10 +1193,11 @@
              To add a step: copy a step-card block and update the number.
              To remove: delete the whole step-card block. -->
 
-        <div class="step-card">
+        <div class="step-card checkpoint">
           <div class="step-left">
             <span class="step-num">Step 01</span>
             <div class="step-name">Kick-off</div>
+            <span class="checkpoint-tag">⬥ Checkpoint</span>
           </div>
           <div>
             <div class="step-desc">Starts with a design brief, PRD, one-pager, or vision doc. Sometimes there are two kick-offs: an early one to align on concepts, and a second to bring Engineering in as the project moves into Detailed Design.</div>
@@ -1209,13 +1226,13 @@
           </div>
         </div>
 
-        <div class="step-card">
+        <div class="step-card checkpoint">
           <div class="step-left">
             <span class="step-num">Step 03</span>
             <div class="step-name">Refine</div>
           </div>
           <div>
-            <div class="step-desc">A direction is decided. Design Team lays out all use cases and platform considerations for Detailed Design, checks with Accessibility Design, and begins scoping with the Eng team.</div>
+            <div class="step-desc">A direction is decided. Design Team lays out all use cases and platform considerations for Detailed Design, checks with Accessibility Design, and begins scoping with the Eng team. Document the chosen direction in Figma — add a date stamp, annotation, or cover frame to confirm the decision before moving forward.</div>
             <div class="step-raci">
               <span class="raci-pill raci-r"><span class="raci-badge">R</span> Design</span>
               <span class="raci-pill raci-c"><span class="raci-badge">C</span> Product</span>
@@ -1225,13 +1242,14 @@
           </div>
         </div>
 
-        <div class="step-card">
+        <div class="step-card checkpoint">
           <div class="step-left">
             <span class="step-num">Step 04</span>
             <div class="step-name">Handoff</div>
+            <span class="checkpoint-tag">⬥ Checkpoint</span>
           </div>
           <div>
-            <div class="step-desc">Using Figma's Dev Mode. Usually a formal walkthrough where the Design Team presents to Engineering, answers questions, and finalizes specs before build begins.</div>
+            <div class="step-desc">Specs are delivered via Figma Dev Mode — the team avoids spending cycles manually spec'ing flows and relies on Dev Mode as the workflow tool for Engineering. Usually a formal walkthrough where the Design Team presents to Engineering, answers questions, and finalizes before build begins.</div>
             <div class="step-raci">
               <span class="raci-pill raci-r"><span class="raci-badge">R</span> Design</span>
               <span class="raci-pill raci-i"><span class="raci-badge">I</span> Product</span>
@@ -1241,10 +1259,11 @@
           </div>
         </div>
 
-        <div class="step-card">
+        <div class="step-card checkpoint">
           <div class="step-left">
             <span class="step-num">Step 05</span>
             <div class="step-name">Design QA</div>
+            <span class="checkpoint-tag">⬥ Checkpoint</span>
           </div>
           <div>
             <div class="step-desc">Live Zoom build walkthrough, alpha build with tickets, or a Slack video for smaller features. Must happen before the ERF or feature is pushed live by Eng.</div>
